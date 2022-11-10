@@ -1,0 +1,60 @@
+.dash {
+  padding: 20px 140px;
+}
+.infos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card {
+  background-color: var(--gray);
+  margin-top: 20px;
+  padding: 5px;
+  border-radius: 7px;
+  color: #fff;
+  padding-top: 5px;
+  max-width: 200px;
+  width: 30%;
+  text-align: center;
+}
+
+.card span {
+  font-size: 36px;
+  color: coral;
+}
+
+.card .amount {
+  font-size: 26px;
+  font-weight: 500;
+  color: #fff;
+}
+.card p {
+  color: #e3e3e4;
+}
+
+@media screen and (max-width: 991px) {
+  .dash {
+    padding: 20px 80px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .dash {
+    padding: 20px 60px;
+  }
+  .card {
+    max-width: 100%;
+    width: 92%;
+    padding-bottom: 20px;
+  }
+
+  .infos {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 567px) {
+  .dash {
+    padding: 20px 10px;
+  }
+}

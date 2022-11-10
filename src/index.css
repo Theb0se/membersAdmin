@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700&family=Kreon:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --white: #e6f1ff;
+  --green: #64ffda;
+  --gray: #373539;
+  --dark: #151516;
+  --orng: #ff8355;
+  --kanit: "Kanit", sans-serif;
+  --lexen: sans-serif;
+  --Kreon: "Kreon", serif;
+  --bitter: "Bitter", serif;
+}
+body {
+  margin: 0;
+  font-family: var(--kanit) !important;
+  /* font-family: "Oswald", sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  background-color: var(--dark) !important;
+  color: var(--slate);
+  text-transform: capitalize;
+  box-sizing: border-box !important;
+}
+.highlight {
+  color: var(--green);
+  text-transform: capitalize;
+  cursor: pointer;
+  position: relative;
+}
+.highlight::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--green);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+.highlight:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+::selection {
+  background-color: var(--orng);
+  color: var(--dark);
+}

@@ -1,0 +1,105 @@
+.navbar {
+  align-items: center;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background-color: var(--gray);
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 24px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.navbar .ham {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+}
+
+.ham h5 {
+  margin-left: 22px;
+}
+
+.admin {
+  background-color: var(--gray);
+  margin-top: 20px;
+  padding: 5px;
+  border-radius: 7px;
+  display: flex;
+  color: #fff;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.admin p {
+  font-size: 14px;
+}
+
+.links {
+  background-color: #343a40;
+  margin-top: 20px;
+  padding: 5px;
+  border-radius: 7px;
+  color: rgb(226, 226, 226);
+  padding-top: 20px;
+}
+.links ul {
+  margin-left: 15px;
+  list-style: none;
+}
+.links ul li {
+  font-size: 18px;
+  margin-bottom: 20px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.links ul li:hover {
+  background-color: var(--gray);
+}
+
+.links ul li span {
+  padding-right: 12px;
+}
+
+.apiBlnc {
+  background-color: #343a40;
+  margin-top: 20px;
+  padding: 5px;
+  border-radius: 7px;
+  color: #fff;
+  padding-top: 5px;
+}
+
+.apiBlnc p {
+  text-align: center;
+  font-size: 18px;
+}
+
+.apiBlnc .blnc {
+  color: var(--orng);
+  font-weight: 600;
+  font-family: var(--bitter);
+}
+
+.totalOrders {
+  background-color: #343a40;
+  margin-top: 20px;
+  padding: 5px;
+  border-radius: 7px;
+  color: #fff;
+  padding-top: 5px;
+}
+
+.totalOrders .icon{
+  text-align: center;
+  font-size: 28px;
+  color: var(--orng);
+}
+
+.totalOrders p{
+  color: #fff;
+  font-size: 18px;
+}
