@@ -5,6 +5,7 @@ function Dashboard() {
   return (
     <div className="dash">
       <div className="infos">
+        {/* earnings */}
         <div className="card">
           <div className="icon">
             <span>
@@ -18,7 +19,7 @@ function Dashboard() {
         <div className="card">
           <div className="icon">
             <span>
-              <i class="fa-regular fa-money-bill-wave"></i>
+              <i class="fa-solid fa-users"></i>
             </span>
             <p className="amount">85 </p>
             <p> Total Users</p>
@@ -29,21 +30,62 @@ function Dashboard() {
         <div className="card">
           <div className="icon">
             <span>
-              <i class="fa-regular fa-money-bill-wave"></i>
+              <i class="fa-regular fa-clipboard-list"></i>
             </span>
             <p className="amount">80</p>
             <p> Total Orders</p>
           </div>
         </div>
+      </div>
+      <div className="chart"></div>
 
-        {/* totle Members */}
+      <div className="orderDetails">
         <div className="card">
-          <div className="icon">
+          <div className="section">
             <span>
-              <i class="fa-regular fa-money-bill-wave"></i>
+              <i class="fa-regular fa-spinner"></i>
             </span>
-            <p className="amount">58753</p>
-            <p> Total Members</p>
+            <p className="value">55</p>
+            <p>Pending</p>
+          </div>
+          <div className="section">
+            <span>
+              <i class="fa-light fa-rotate-right"></i>
+            </span>
+            <p className="value">55</p>
+            <p>Proccesing</p>
+          </div>
+          <div className="section last">
+            <span>
+              <i class="fa-light fa-gear"></i>
+            </span>
+            <p className="value">55</p>
+            <p>Partial</p>
+          </div>
+        </div>
+      </div>
+      <div className="orderDetails">
+        <div className="card">
+          <div className="section">
+            <span>
+              <i class="fa-regular fa-badge-check"></i>
+            </span>
+            <p className="value">55</p>
+            <p>Compleated</p>
+          </div>
+          <div className="section">
+            <span>
+              <i class="fa-light fa-ban"></i>
+            </span>
+            <p className="value">55</p>
+            <p>Cancelled</p>
+          </div>
+          <div className="section last">
+            <span>
+              <i class="fa-light fa-list-check"></i>
+            </span>
+            <p className="value">55</p>
+            <p>In Progress</p>
           </div>
         </div>
       </div>

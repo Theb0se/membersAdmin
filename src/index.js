@@ -7,7 +7,7 @@ import DataContext from "./Context/DataContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter basename="/">
+  <BrowserRouter basename="/membersAdmin">
     <DataContext>
       <React.StrictMode>
         <App />

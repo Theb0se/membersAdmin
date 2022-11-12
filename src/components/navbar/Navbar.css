@@ -55,6 +55,7 @@
   margin-bottom: 20px;
   padding: 5px 10px;
   cursor: pointer;
+  text-align: left;
 }
 .links ul li:hover {
   background-color: var(--gray);
@@ -62,6 +63,7 @@
 
 .links ul li span {
   padding-right: 12px;
+  font-size: 18px;
 }
 
 .apiBlnc {

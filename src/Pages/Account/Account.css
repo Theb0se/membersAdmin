@@ -1,0 +1,72 @@
+.account {
+  padding: 20px 140px;
+}
+.email,
+.password {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.password {
+  margin-top: 50px;
+}
+
+.account label {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.account .card {
+  background-color: var(--gray);
+  margin-top: 20px;
+  padding: 5px;
+  border-radius: 7px;
+  color: #fff;
+  padding-top: 5px;
+  max-width: 500px;
+  width: 70%;
+  padding: 20px;
+}
+
+.account button,
+.account button:hover {
+  background-color: var(--orng);
+  font-weight: 300;
+  border-bottom: 2px solid #ea5923;
+}
+
+.card button {
+  align-self: flex-end;
+  margin-top: 30px;
+}
+.card .bttn {
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media screen and (max-width: 991px) {
+  .account {
+    padding: 20px 80px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .account {
+    padding: 20px 60px;
+  }
+  .account .card {
+    max-width: 100%;
+    width: 92%;
+    padding-bottom: 20px;
+  }
+  .orderDetails .card {
+    max-width: 100%;
+    width: 92%;
+    padding-top: 20px;
+    justify-content: space-between;
+  }
+}
+@media screen and (max-width: 567px) {
+  .account {
+    padding: 20px 10px;
+  }
+}

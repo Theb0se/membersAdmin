@@ -15,11 +15,20 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
-function Navbar() {
+function Navbar(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
+
+  const logout = () => {
+    props.setbarLoading(true);
+
+    setTimeout(() => {
+      props.setbarLoading(false);
+    }, 2500);
+  };
 
   return (
     <div className="navbar">
@@ -32,7 +41,9 @@ function Navbar() {
             onClick={onOpen}
             ref={btnRef}
           />
-          <h5>Dashboard</h5>
+          <Link to="/" onClick={onClose}>
+            <h5>Dashboard</h5>
+          </Link>
         </div>
       </div>
       <div className="rgt">
@@ -57,8 +68,11 @@ function Navbar() {
             colorScheme="#000"
           />
           <MenuList>
-            <MenuItem>Profile</MenuItem>
-            <MenuItem>Logout</MenuItem>
+            <Link to="/account">
+              <MenuItem>Profile</MenuItem>
+            </Link>
+
+            <MenuItem onClick={logout}>Logout</MenuItem>
           </MenuList>
         </Menu>
       </div>
@@ -85,42 +99,65 @@ function Navbar() {
 
             <div className="links">
               <ul>
-                <li>
-                  <span>
-                    <i class="fa-solid fa-table-columns"></i>
-                  </span>{" "}
-                  Dashboard
-                </li>
-                <li>
-                  <span>
-                    <i class="fa-light fa-list"></i>
-                  </span>{" "}
-                  Services
-                </li>
-                <li>
-                  <span>
-                    <i class="fa-sharp fa-solid fa-clipboard"></i>
-                  </span>{" "}
-                  Orders
-                </li>
-                <li>
-                  <span>
-                    <i class="fa-regular fa-shuffle"></i>
-                  </span>{" "}
-                  Payments
-                </li>
-                <li>
-                  <span>
-                    <i class="fa-regular fa-clipboard-user"></i>
-                  </span>{" "}
-                  Tickets
-                </li>
-                <li>
-                  <span>
-                    <i class="fa-regular fa-users"></i>
-                  </span>{" "}
-                  Users
-                </li>
+                <Link to="/" onClick={onClose}>
+                  <li>
+                    <span>
+                      <i class="fa-solid fa-table-columns"></i>
+                    </span>{" "}
+                    Dashboard
+                  </li>
+                </Link>
+
+                <Link to="/users" onClick={onClose}>
+                  <li>
+                    <span>
+                      <i class="fa-regular fa-users"></i>
+                    </span>{" "}
+                    Users
+                  </li>
+                </Link>
+                <Link to="/orders" onClick={onClose}>
+                  <li>
+                    <span>
+                      <i class="fa-sharp fa-solid fa-clipboard"></i>
+                    </span>{" "}
+                    Orders
+                  </li>
+                </Link>
+                <Link to="/services" onClick={onClose}>
+                  <li>
+                    <span>
+                      <i class="fa-light fa-list"></i>
+                    </span>{" "}
+                    Services
+                  </li>
+                </Link>
+
+                <Link to="/payments" onClick={onClose}>
+                  <li>
+                    <span>
+                      <i class="fa-regular fa-shuffle"></i>
+                    </span>{" "}
+                    Payments
+                  </li>
+                </Link>
+
+                <Link to="/tickets" onClick={onClose}>
+                  <li>
+                    <span>
+                      <i class="fa-regular fa-clipboard-user"></i>
+                    </span>{" "}
+                    Tickets
+                  </li>
+                </Link>
+                <Link to={"/setting"} onClick={onClose}>
+                  <li>
+                    <span>
+                      <i class="fa-light fa-gear"></i>
+                    </span>{" "}
+                    Settings
+                  </li>{" "}
+                </Link>
               </ul>
             </div>
 
