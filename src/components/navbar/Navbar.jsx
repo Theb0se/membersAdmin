@@ -15,13 +15,18 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar(props) {
+  const loactaion = useLocation();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
+  const path = loactaion.pathname;
+  const pathName = path.replace("/", "");
+  console.log(pathName);
 
+  console.log(pathName);
   const logout = () => {
     props.setbarLoading(true);
 
@@ -42,7 +47,7 @@ function Navbar(props) {
             ref={btnRef}
           />
           <Link to="/" onClick={onClose}>
-            <h5>Dashboard</h5>
+            <h5>{pathName === "" ? "Dashboard" : pathName}</h5>
           </Link>
         </div>
       </div>
@@ -86,77 +91,36 @@ function Navbar(props) {
         <DrawerOverlay />
         <DrawerContent bg={"#000"}>
           <DrawerCloseButton color={"#FFF"} />
-          <DrawerHeader></DrawerHeader>
+          <DrawerHeader color={"#fff"} fontWeight={"400"}>
+            Member Stocks
+          </DrawerHeader>
 
           <DrawerBody>
-            <div className="admin">
-              <Avatar w={8} h={8} name="Rishabh Bose" />
-              <div className="name">
-                <p>Rishabhbose3@gmail.com</p>
-                <p>Rishabh Bose</p>
-              </div>
-            </div>
-
             <div className="links">
               <ul>
                 <Link to="/" onClick={onClose}>
-                  <li>
-                    <span>
-                      <i class="fa-solid fa-table-columns"></i>
-                    </span>{" "}
-                    Dashboard
-                  </li>
+                  <li>Dashboard</li>
                 </Link>
 
                 <Link to="/users" onClick={onClose}>
-                  <li>
-                    <span>
-                      <i class="fa-regular fa-users"></i>
-                    </span>{" "}
-                    Users
-                  </li>
+                  <li>Users</li>
                 </Link>
                 <Link to="/orders" onClick={onClose}>
-                  <li>
-                    <span>
-                      <i class="fa-sharp fa-solid fa-clipboard"></i>
-                    </span>{" "}
-                    Orders
-                  </li>
+                  <li>Orders</li>
                 </Link>
                 <Link to="/services" onClick={onClose}>
-                  <li>
-                    <span>
-                      <i class="fa-light fa-list"></i>
-                    </span>{" "}
-                    Services
-                  </li>
+                  <li>Services</li>
                 </Link>
 
                 <Link to="/payments" onClick={onClose}>
-                  <li>
-                    <span>
-                      <i class="fa-regular fa-shuffle"></i>
-                    </span>{" "}
-                    Payments
-                  </li>
+                  <li>Payments</li>
                 </Link>
 
-                <Link to="/tickets" onClick={onClose}>
-                  <li>
-                    <span>
-                      <i class="fa-regular fa-clipboard-user"></i>
-                    </span>{" "}
-                    Tickets
-                  </li>
+                <Link to="/support" onClick={onClose}>
+                  <li>Support</li>
                 </Link>
                 <Link to={"/setting"} onClick={onClose}>
-                  <li>
-                    <span>
-                      <i class="fa-light fa-gear"></i>
-                    </span>{" "}
-                    Settings
-                  </li>{" "}
+                  <li>Settings</li>{" "}
                 </Link>
               </ul>
             </div>

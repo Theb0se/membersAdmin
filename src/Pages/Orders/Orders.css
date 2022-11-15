@@ -1,0 +1,72 @@
+.orders {
+  padding: 10px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.filters {
+  text-align: center;
+}
+
+.filters button {
+  border: 1px solid var(--orng);
+  color: #fff;
+  font-weight: 400;
+  padding: 2px 24px;
+  border-radius: 4px;
+  margin-right: 10px;
+  transition: 0.2s ease;
+  margin-top: 16px;
+}
+.filters button:hover {
+  background-color: var(--orng);
+  color: #000;
+}
+
+.search {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search .select {
+  width: 100px;
+  color: #fff;
+}
+
+.search select option {
+  background-color: #000;
+}
+
+.srch {
+  display: flex;
+}
+
+.srch input {
+  border-radius: 0;
+}
+
+.srch button {
+  background: var(--gray);
+  border-radius: 0;
+  border: 1px solid #fff;
+  color: #fff;
+}
+.srch button:hover {
+  background-color: var(--orng);
+  color: #000;
+}
+
+.table {
+  margin-top: 50px;
+  overflow: auto;
+}
+.table table {
+  white-space: nowrap;
+}

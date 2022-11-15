@@ -1,0 +1,75 @@
+.payments {
+  padding: 10px;
+}
+
+.addpayment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: var(--gray);
+  width: 100%;
+  border-radius: 7px;
+  color: #fff;
+  font-weight: 300;
+}
+
+.addpayment button {
+  background-color: var(--orng);
+  padding: 5px 10px;
+  border-radius: 7px;
+  color: #fff;
+}
+
+.searchPayment input {
+  width: 100%;
+  min-width: 0px;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  transition-property: var(--chakra-transition-property-common);
+  transition-duration: var(--chakra-transition-duration-normal);
+  font-size: var(--chakra-fontSizes-sm);
+  -webkit-padding-start: var(--chakra-space-3);
+  padding-inline-start: var(--chakra-space-3);
+  -webkit-padding-end: var(--chakra-space-3);
+  padding-inline-end: var(--chakra-space-3);
+  height: 34px;
+  border-radius: var(--chakra-radii-sm);
+  border: 1px solid;
+  border-color: inherit;
+  background: inherit;
+  color: #fff;
+}
+
+.searchPayment button {
+  border-radius: 0;
+  height: 34px;
+}
+
+.payments .action{
+    font-size: 13px;
+    width: fit-content;
+    padding: 2px 4px;
+    border: 1px solid rgb(187, 187, 187);
+    border-radius: 3px;
+}
+
+@media screen and (max-width: 567px) {
+  .addpayment {
+    flex-direction: column-reverse;
+    padding: 10px 14px;
+  }
+  .searchPayment {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  .addbtn {
+    width: 100%;
+    text-align: left;
+  }
+}

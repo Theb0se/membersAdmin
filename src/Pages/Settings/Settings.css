@@ -1,0 +1,43 @@
+.setting {
+  padding: 20px 140px;
+}
+.setting .card {
+  width: 100%;
+  max-width: 100%;
+}
+
+.setting .card button {
+  margin-top: 0;
+}
+
+.setting .table{
+    margin-top: 2px;
+}
+
+.setting .edit{
+    padding: 3px 10px;
+    border: 1px solid rgb(146, 146, 146);
+    text-align: center;
+    border-radius: 4px;
+}
+
+@media screen and (max-width: 991px) {
+  .setting {
+    padding: 20px 80px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .setting {
+    padding: 20px 60px;
+  }
+  .card {
+    max-width: 100%;
+    width: 92%;
+    padding-bottom: 20px;
+  }
+}
+@media screen and (max-width: 567px) {
+  .setting {
+    padding: 20px 10px;
+  }
+}

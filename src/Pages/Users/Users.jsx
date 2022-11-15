@@ -22,9 +22,10 @@ import {
   Input,
   FormControl,
   Button,
+  Spinner,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
-import data from "../../Data/Data";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import "./users.css";
 
 function Users(props) {
@@ -38,43 +39,103 @@ function Users(props) {
     onOpen: onPassOpen,
     onClose: onPassClose,
   } = useDisclosure();
+  const {
+    isOpen: isDiscountOpen,
+    onOpen: onDiscountOpen,
+    onClose: onDiscountClose,
+  } = useDisclosure();
 
   const [Username, setUsername] = useState();
   const [Id, setId] = useState();
   const [Email, setEmail] = useState();
   const [password, setpassword] = useState();
+  const [Discount, setDiscount] = useState();
+  const [isLoading, setisLoading] = useState(false);
   const [ispassLoading, setispassLoading] = useState(false);
   const [isUserloading, setisUserloading] = useState(false);
+  const [isDiscountLoading, setisDiscountLoading] = useState(false);
+  const [Users, setUsers] = useState();
 
-  const sum = (array) => {
-    const ourArray = array;
-    let sum = 0;
+  // const sum = (array) => {
+  //   const ourArray = array;
+  //   let sum = 0;
 
-    for (let i = 0; i < ourArray.length; i += 1) {
-      sum += ourArray[i];
-    }
+  //   for (let i = 0; i < ourArray.length; i += 1) {
+  //     sum += ourArray[i];
+  //   }
 
-    return sum;
-  };
+  //   return sum;
+  // };
 
   const editPassword = () => {
     setispassLoading(true);
     props.setbarLoading(true);
 
-    setTimeout(() => {
-      setispassLoading(false);
-      props.setbarLoading(false);
-    }, 3000);
+    const data = { userId: Id, Password: password };
+    console.log(data);
+
+    axios
+      .post("https://smmboostclub.herokuapp.com/user/ChangePassword", data)
+      .then(function (response) {
+        setispassLoading(false);
+        props.setbarLoading(false);
+        onPassClose();
+        alert(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setispassLoading(false);
+        props.setbarLoading(false);
+      });
   };
   const editUser = () => {
     setisUserloading(true);
     props.setbarLoading(true);
+    console.log(Id, Username, Email);
+
+    const data = {
+      userId: Id,
+      name: Username,
+      email: Email,
+    };
+
+    axios
+      .post("https://smmboostclub.herokuapp.com/user/updateUser", data)
+      .then(function (response) {
+        setisUserloading(false);
+        props.setbarLoading(false);
+        setUsers(response.data);
+        onUserClose();
+      })
+      .catch(function (error) {
+        console.log(error);
+        setisUserloading(false);
+        props.setbarLoading(false);
+      });
+  };
+  const setDisc = () => {
+    setisDiscountLoading(true);
+    props.setbarLoading(true);
 
     setTimeout(() => {
-      setisUserloading(false);
+      setisDiscountLoading(false);
       props.setbarLoading(false);
     }, 3000);
   };
+
+  useEffect(() => {
+    setisLoading(true);
+    axios
+      .get("https://smmboostclub.herokuapp.com/user/allUsers", {})
+      .then(function (response) {
+        setUsers(response.data);
+        setisLoading(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setisLoading(false);
+      });
+  }, []);
 
   return (
     <div className="users">
@@ -85,50 +146,66 @@ function Users(props) {
               <Tr>
                 <Th>ID</Th>
                 <Th>Username</Th>
-                <Th>Email</Th>
+                <Th textAlign={"center"}>Email</Th>
                 <Th>Status</Th>
-                <Th>Created At</Th>
+                <Th>Created</Th>
                 <Th>Amount Spent</Th>
                 <Th>Amount In Panel</Th>
-                <Th>Set Discount</Th>
-                <Th>Action</Th>
+                <Th textAlign={"center"}>Set Discount</Th>
+                <Th textAlign={"center"}>Action</Th>
               </Tr>
             </Thead>
-            <Tbody>
-              {data.map((d) => (
-                <Tr>
-                  <Td>{d.Id}</Td>
-                  <Td>{d.username}</Td>
-                  <Td>{d.email}</Td>
-                  <Td>{d.status}</Td>
-                  <Td>{d.created}</Td>
-                  <Td textAlign={"center"}>{sum(d.spent)}</Td>
-                  <Td textAlign={"center"}>{d.balance}</Td>
-                  <Td>Active</Td>
-                  <Td>
-                    <Menu>
-                      <MenuButton
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <Tbody>
+                {Users?.map((d) => (
+                  <Tr>
+                    <Td>{d._id}</Td>
+                    <Td textAlign={"center"}>{d.name}</Td>
+                    <Td>{d.email}</Td>
+                    <Td textAlign={"center"}>not set</Td>
+                    <Td>{d.createdAt}</Td>
+                    <Td textAlign={"center"}>null</Td>
+                    <Td textAlign={"center"}>null</Td>
+                    <Td textAlign={"center"}>
+                      <button
+                        className="setd"
                         onClick={() => {
-                          setId(d.Id);
-                          setUsername(d.username);
+                          setId(d._id);
+                          setUsername(d.name);
                           setEmail(d.email);
+                          onDiscountOpen();
                         }}
                       >
-                        Actions <ChevronDownIcon />
-                      </MenuButton>
-                      <MenuList bg={"#373539"}>
-                        <div className="editUser">
-                          <p onClick={onUserOpen}>Edit User</p>
-                        </div>
-                        <div className="editPass">
-                          <p onClick={onPassOpen}>Set Password</p>
-                        </div>
-                      </MenuList>
-                    </Menu>
-                  </Td>
-                </Tr>
-              ))}
-            </Tbody>
+                        Set Descount
+                      </button>
+                    </Td>
+                    <Td textAlign={"center"}>
+                      <Menu>
+                        <MenuButton
+                          onClick={() => {
+                            setId(d._id);
+                            setUsername(d.name);
+                            setEmail(d.email);
+                          }}
+                        >
+                          Actions <ChevronDownIcon />
+                        </MenuButton>
+                        <MenuList bg={"#373539"}>
+                          <div className="editUser">
+                            <p onClick={onUserOpen}>Edit User</p>
+                          </div>
+                          <div className="editPass">
+                            <p onClick={onPassOpen}>Set Password</p>
+                          </div>
+                        </MenuList>
+                      </Menu>
+                    </Td>
+                  </Tr>
+                ))}
+              </Tbody>
+            )}
           </Table>
         </TableContainer>
       </div>
@@ -250,6 +327,68 @@ function Users(props) {
               ml={5}
               color={"#373539"}
               onClick={onPassClose}
+            >
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
+      {/* Descount Model */}
+      <Modal
+        isOpen={isDiscountOpen}
+        onClose={onDiscountClose}
+        size={"sm"}
+        isCentered
+      >
+        <ModalOverlay />
+        <ModalContent bg={"#373539"} color={"#fff"}>
+          <ModalHeader fontWeight={400} fontSize={"16px"}>
+            Set Discount ( ID : {Id} )
+          </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <FormControl>
+              <FormLabel fontWeight={400} fontSize={"14px"}>
+                Discount ( In % )
+              </FormLabel>
+              <Input
+                type="number"
+                max="100"
+                min="0"
+                size={"sm"}
+                color={"#FFF"}
+                value={Discount}
+                onChange={(e) => {
+                  let { value, min, max } = e.target;
+                  value = Math.max(
+                    Number(min),
+                    Math.min(Number(max), Number(value))
+                  );
+
+                  setDiscount(value);
+                }}
+              />
+            </FormControl>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button
+              bg={"#ff8355"}
+              _hover
+              size={"sm"}
+              fontWeight={"300"}
+              onClick={setDisc}
+              isLoading={isDiscountLoading}
+            >
+              Set Discount
+            </Button>
+            <Button
+              colorScheme="gray"
+              size={"sm"}
+              ml={5}
+              color={"#373539"}
+              onClick={onDiscountClose}
             >
               Close
             </Button>
