@@ -24,9 +24,7 @@ function Navbar(props) {
   const btnRef = useRef();
   const path = loactaion.pathname;
   const pathName = path.replace("/", "");
-  console.log(pathName);
 
-  console.log(pathName);
   const logout = () => {
     props.setbarLoading(true);
 

@@ -72,7 +72,6 @@ function Users(props) {
     props.setbarLoading(true);
 
     const data = { userId: Id, Password: password };
-    console.log(data);
 
     axios
       .post("https://smmboostclub.herokuapp.com/user/ChangePassword", data)
@@ -91,7 +90,6 @@ function Users(props) {
   const editUser = () => {
     setisUserloading(true);
     props.setbarLoading(true);
-    console.log(Id, Username, Email);
 
     const data = {
       userId: Id,
@@ -125,10 +123,14 @@ function Users(props) {
 
   useEffect(() => {
     setisLoading(true);
+
     axios
       .get("https://smmboostclub.herokuapp.com/user/allUsers", {})
       .then(function (response) {
-        setUsers(response.data);
+        const data = response.data;
+        const rva = [...data].reverse();
+
+        setUsers(rva);
         setisLoading(false);
       })
       .catch(function (error) {
@@ -141,7 +143,7 @@ function Users(props) {
     <div className="users">
       <div className="table">
         <TableContainer>
-          <Table size="sm" color={"#fff"}>
+          <Table size="md" color={"#fff"}>
             <Thead>
               <Tr>
                 <Th>ID</Th>
@@ -159,9 +161,9 @@ function Users(props) {
               <Spinner />
             ) : (
               <Tbody>
-                {Users?.map((d) => (
+                {Users?.map((d, index) => (
                   <Tr>
-                    <Td>{d._id}</Td>
+                    <Td>{Users.length - index}</Td>
                     <Td textAlign={"center"}>{d.name}</Td>
                     <Td>{d.email}</Td>
                     <Td textAlign={"center"}>not set</Td>

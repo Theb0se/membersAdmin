@@ -3,7 +3,6 @@ import "./Orders.css";
 import {
   Button,
   Input,
-  Select,
   Table,
   Thead,
   Tbody,
@@ -11,10 +10,35 @@ import {
   Th,
   Td,
   TableContainer,
+  Spinner,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 function Orders() {
+  const [getData, setgetData] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
+  let data = getData;
+
+  useEffect(() => {
+    setisLoading(true);
+    axios
+      .get("https://smmboostclub.herokuapp.com/order/getallorder", {})
+      .then(function (response) {
+        const data = response.data;
+        const reverseData = [...data].reverse();
+        setgetData(reverseData);
+        setisLoading(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setisLoading(false);
+      });
+  }, []);
+
+  console.log(data);
+
   return (
     <div className="orders">
       <div className="filters">
@@ -28,13 +52,6 @@ function Orders() {
       </div>
 
       <div className="search">
-        <div className="select">
-          <Select size="sm">
-            <option value="option1">Last 90 Days</option>
-            <option value="option2">Last 1 Year</option>
-          </Select>
-        </div>
-
         <div className="srch">
           <Input type="text" size={"sm"} color={"#fff"} />
           <Button size={"sm"}>
@@ -45,7 +62,7 @@ function Orders() {
 
       <div className="table">
         <TableContainer>
-          <Table variant="simple" size={"sm"}>
+          <Table variant="simple" size={"md"}>
             <Thead>
               <Tr py={20}>
                 <Th>ID</Th>
@@ -57,86 +74,34 @@ function Orders() {
                 <Th>Service</Th>
                 <Th>Status</Th>
                 <Th>Remains</Th>
-                <Th>Created</Th>
               </Tr>
             </Thead>
-            <Tbody>
-              <Tr color={"#fff"}>
-                <Td>257</Td>
-                <Td>Theb0se</Td>
-                <Td>theb0se.com</Td>
-                <Td textAlign={"center"}>157.25</Td>
-                <Td textAlign={"center"}>857</Td>
-                <Td textAlign={"center"}>1000</Td>
-                <Td className="service">
-                  1 - Telegram Members () Non Drop ) ( 10 / Day ) ( Max - 20K ){" "}
-                  <br />| Instant Start | Best Working - ₹ 120 Per 1000
-                </Td>
-                <Td>Theb0se</Td>
-                <Td>theb0se.com</Td>
-                <Td>2022-11-14 11:50:18</Td>
-              </Tr>
-              <Tr color={"#fff"}>
-                <Td>257</Td>
-                <Td>Theb0se</Td>
-                <Td>theb0se.com</Td>
-                <Td textAlign={"center"}>157.25</Td>
-                <Td textAlign={"center"}>857</Td>
-                <Td textAlign={"center"}>1000</Td>
-                <Td className="service">
-                  1 - Telegram Members () Non Drop ) ( 10 / Day ) ( Max - 20K ){" "}
-                  <br />| Instant Start | Best Working - ₹ 120 Per 1000
-                </Td>
-                <Td>Theb0se</Td>
-                <Td>theb0se.com</Td>
-                <Td>2022-11-14 11:50:18</Td>
-              </Tr>
-              <Tr color={"#fff"}>
-                <Td>257</Td>
-                <Td>Theb0se</Td>
-                <Td>theb0se.com</Td>
-                <Td textAlign={"center"}>157.25</Td>
-                <Td textAlign={"center"}>857</Td>
-                <Td textAlign={"center"}>1000</Td>
-                <Td className="service">
-                  1 - Telegram Members () Non Drop ) ( 10 / Day ) ( Max - 20K ){" "}
-                  <br />| Instant Start | Best Working - ₹ 120 Per 1000
-                </Td>
-                <Td>Theb0se</Td>
-                <Td>theb0se.com</Td>
-                <Td>2022-11-14 11:50:18</Td>
-              </Tr>
-              <Tr color={"#fff"}>
-                <Td>257</Td>
-                <Td>Theb0se</Td>
-                <Td>theb0se.com</Td>
-                <Td textAlign={"center"}>157.25</Td>
-                <Td textAlign={"center"}>857</Td>
-                <Td textAlign={"center"}>1000</Td>
-                <Td className="service">
-                  1 - Telegram Members () Non Drop ) ( 10 / Day ) ( Max - 20K ){" "}
-                  <br />| Instant Start | Best Working - ₹ 120 Per 1000
-                </Td>
-                <Td>Theb0se</Td>
-                <Td>theb0se.com</Td>
-                <Td>2022-11-14 11:50:18</Td>
-              </Tr>
-              <Tr color={"#fff"}>
-                <Td>257</Td>
-                <Td>Theb0se</Td>
-                <Td>theb0se.com</Td>
-                <Td textAlign={"center"}>157.25</Td>
-                <Td textAlign={"center"}>857</Td>
-                <Td textAlign={"center"}>1000</Td>
-                <Td className="service">
-                  1 - Telegram Members () Non Drop ) ( 10 / Day ) ( Max - 20K ){" "}
-                  <br />| Instant Start | Best Working - ₹ 120 Per 1000
-                </Td>
-                <Td>Theb0se</Td>
-                <Td>theb0se.com</Td>
-                <Td>2022-11-14 11:50:18</Td>
-              </Tr>
-            </Tbody>
+
+            {isLoading ? (
+              <Spinner color="#fff" size="lg" />
+            ) : (
+              <Tbody>
+                {data?.map((data, index) => (
+                  <Tr color={"#fff"}>
+                    <Td>{getData.length - index}</Td>
+                    <Td>{data.ordermain.username}</Td>
+                    <Td>
+                      <a href={data.ordermain.link}>{data.ordermain.link}</a>
+                    </Td>
+                    <Td textAlign={"center"}>{data.charge}</Td>
+                    <Td textAlign={"center"}>{data.start_count}</Td>
+                    <Td textAlign={"center"}>{data.ordermain.quantity}</Td>
+                    <Td className="service">
+                      1 - Telegram Members () Non Drop ) ( 10 / Day ) ( Max -
+                      20K ) <br />| Instant Start | Best Working - ₹ 120 Per
+                      1000
+                    </Td>
+                    <Td>{data.status}</Td>
+                    <Td>{data.remains}</Td>
+                  </Tr>
+                ))}
+              </Tbody>
+            )}
           </Table>
         </TableContainer>
       </div>

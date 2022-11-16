@@ -18,6 +18,14 @@
   font-weight: 400;
 }
 
+.table table tbody tr:nth-child(even) {
+  background-color: rgba(25, 200, 104, 0.2) !important;
+}
+.table table tbody tr:nth-child(odd) {
+  background-color: rgba(255, 131, 85, 0.2) !important;
+  
+}
+
 .editPass,
 .editUser {
   padding: 8px 8px;
@@ -25,8 +33,7 @@
   font-weight: normal;
 }
 
-
-.setd{
+.setd {
   font-weight: 300;
   font-size: 13px;
   padding: 1px 6px;
