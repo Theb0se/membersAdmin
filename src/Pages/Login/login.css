@@ -1,0 +1,51 @@
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 75vh;
+}
+
+.login .card {
+  padding: 10px 14px;
+  width: 600px;
+  max-width: 600px;
+  padding-bottom: 40px;
+}
+
+.login .form {
+  margin-top: 30px;
+}
+.login .form input {
+  width: 100%;
+  background-color: #252427;
+  border-color: #1a191b;
+  border: none !important;
+  color: #ffffff;
+  font-size: "";
+  font-weight: inherit;
+  height: 40px;
+  border-bottom: 2px solid #1a191b !important;
+  outline: none;
+  border-radius: 9px;
+  margin-top: 4px;
+  padding: 2px 14px;
+  color: var(--white);
+}
+
+.login .form button {
+  height: 40px;
+  background-color: var(--orng);
+  width: 100%;
+  border-radius: 9px;
+  margin-top: 30px;
+  color: var(--white);
+  border-bottom: 2px solid #ea5923;
+}
+
+@media screen and (max-width: 767px) {
+  .login .card {
+    max-width: 100%;
+    width: 92%;
+    padding-bottom: 20px;
+  }
+}

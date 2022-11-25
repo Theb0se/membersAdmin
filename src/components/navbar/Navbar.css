@@ -86,6 +86,12 @@
   font-family: var(--bitter);
 }
 
+.totalOrders .ttlor {
+  color: var(--orng);
+  font-weight: 600;
+  font-family: var(--bitter);
+}
+
 .totalOrders {
   background-color: #343a40;
   margin-top: 20px;
@@ -95,13 +101,8 @@
   padding-top: 5px;
 }
 
-.totalOrders .icon{
-  text-align: center;
-  font-size: 28px;
-  color: var(--orng);
-}
-
-.totalOrders p{
+.totalOrders p {
   color: #fff;
   font-size: 18px;
+  text-align: center;
 }

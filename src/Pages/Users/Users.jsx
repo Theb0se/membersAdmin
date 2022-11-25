@@ -26,6 +26,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { DataState } from "../../Context/DataContext";
 import "./users.css";
 
 function Users(props) {
@@ -55,17 +56,7 @@ function Users(props) {
   const [isUserloading, setisUserloading] = useState(false);
   const [isDiscountLoading, setisDiscountLoading] = useState(false);
   const [Users, setUsers] = useState();
-
-  // const sum = (array) => {
-  //   const ourArray = array;
-  //   let sum = 0;
-
-  //   for (let i = 0; i < ourArray.length; i += 1) {
-  //     sum += ourArray[i];
-  //   }
-
-  //   return sum;
-  // };
+  const { Orders } = DataState();
 
   const editPassword = () => {
     setispassLoading(true);
@@ -74,7 +65,7 @@ function Users(props) {
     const data = { userId: Id, Password: password };
 
     axios
-      .post("https://smmboostclub.herokuapp.com/user/ChangePassword", data)
+      .post("https://memberstocksserver.onrender.com/user/ChangePassword", data)
       .then(function (response) {
         setispassLoading(false);
         props.setbarLoading(false);
@@ -98,7 +89,7 @@ function Users(props) {
     };
 
     axios
-      .post("https://smmboostclub.herokuapp.com/user/updateUser", data)
+      .post("https://memberstocksserver.onrender.com/user/updateUser", data)
       .then(function (response) {
         setisUserloading(false);
         props.setbarLoading(false);
@@ -125,11 +116,10 @@ function Users(props) {
     setisLoading(true);
 
     axios
-      .get("https://smmboostclub.herokuapp.com/user/allUsers", {})
+      .get("https://memberstocksserver.onrender.com/user/allUsers", {})
       .then(function (response) {
         const data = response.data;
         const rva = [...data].reverse();
-
         setUsers(rva);
         setisLoading(false);
       })
@@ -139,6 +129,37 @@ function Users(props) {
       });
   }, []);
 
+  const date = function (date) {
+    var d = new Date(date);
+    return d.toLocaleString("en-GB", {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+    });
+  };
+  const time = function (date) {
+    const d = new Date(date).toLocaleTimeString();
+    return d;
+  };
+
+  const spendings = (email) => {
+    const filtrOrd = Orders?.filter((o) => o.ordermain.email === email);
+    const compleat = filtrOrd?.filter((f) => f.status !== "Canceled");
+    const qt = [];
+    for (let i = 0; i < compleat?.length; i++) {
+      const qnt = compleat[i]?.ordermain?.quantity;
+      const qntNum = parseFloat(qnt);
+
+      qt.push(qntNum);
+    }
+
+    let sum = qt.reduce(function (a, b) {
+      return a + b;
+    }, 0);
+
+    return sum;
+  };
+
   return (
     <div className="users">
       <div className="table">
@@ -147,12 +168,12 @@ function Users(props) {
             <Thead>
               <Tr>
                 <Th>ID</Th>
-                <Th>Username</Th>
-                <Th textAlign={"center"}>Email</Th>
+                <Th>Name</Th>
+                <Th>Email</Th>
                 <Th>Status</Th>
                 <Th>Created</Th>
-                <Th>Amount Spent</Th>
-                <Th>Amount In Panel</Th>
+                <Th textAlign={"center"}>Amt Spent</Th>
+                <Th textAlign={"center"}>Amt In Panel</Th>
                 <Th textAlign={"center"}>Set Discount</Th>
                 <Th textAlign={"center"}>Action</Th>
               </Tr>
@@ -164,12 +185,14 @@ function Users(props) {
                 {Users?.map((d, index) => (
                   <Tr>
                     <Td>{Users.length - index}</Td>
-                    <Td textAlign={"center"}>{d.name}</Td>
+                    <Td>{d.name}</Td>
                     <Td>{d.email}</Td>
                     <Td textAlign={"center"}>not set</Td>
-                    <Td>{d.createdAt}</Td>
-                    <Td textAlign={"center"}>null</Td>
-                    <Td textAlign={"center"}>null</Td>
+                    <Td>
+                      {date(d.createdAt)} <br /> {time(d.createdAt)}
+                    </Td>
+                    <Td textAlign={"center"}>{spendings(d.email) * 0.13} ₹</Td>
+                    <Td textAlign={"center"}>{d.balence} ₹</Td>
                     <Td textAlign={"center"}>
                       <button
                         className="setd"
@@ -352,7 +375,7 @@ function Users(props) {
           <ModalBody>
             <FormControl>
               <FormLabel fontWeight={400} fontSize={"14px"}>
-                Discount ( In % )
+                Discount ( In ₹ )
               </FormLabel>
               <Input
                 type="number"

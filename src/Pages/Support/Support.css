@@ -1,7 +1,22 @@
-.support{
-    padding: 10px;
+.support {
+  padding: 10px;
 }
 
-.support .table{
-    margin-top: 30px;
+.support .table {
+  margin-top: 30px;
+}
+
+.support .view {
+  padding: 2px 4px;
+  font-size: 14px;
+  border: 1px solid rgb(177, 177, 177);
+  border-radius: 4px;
+}
+.css-ajkiow:disabled {
+  opacity: 1 !important;
+}
+
+.setcompleted {
+  background-color: var(--orng) !important;
+  border-bottom: 2px solid #ea5923;
 }

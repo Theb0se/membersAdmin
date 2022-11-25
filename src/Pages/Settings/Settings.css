@@ -4,21 +4,30 @@
 .setting .card {
   width: 100%;
   max-width: 100%;
+  padding: 0;
 }
 
 .setting .card button {
   margin-top: 0;
 }
 
-.setting .table{
-    margin-top: 2px;
+.setting .table {
+  margin-top: 2px;
 }
 
-.setting .edit{
-    padding: 3px 10px;
-    border: 1px solid rgb(146, 146, 146);
-    text-align: center;
-    border-radius: 4px;
+.setting .edit {
+  padding: 3px 10px;
+  border: 1px solid rgb(146, 146, 146);
+  text-align: center;
+  border-radius: 4px;
+}
+.updateApi {
+  width: 150px;
+  height: 32px;
+  background-color: var(--orng);
+  padding: 0 20px;
+  border-radius: 7px;
+  font-weight: 500;
 }
 
 @media screen and (max-width: 991px) {

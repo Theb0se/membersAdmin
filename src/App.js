@@ -11,9 +11,12 @@ import Users from "./Pages/Users/Users";
 import Orders from "./Pages/Orders/Orders";
 import Payment from "./Pages/Payments/Payment";
 import Support from "./Pages/Support/Support";
+import Login from "./Pages/Login/Login";
+import { DataState } from "./Context/DataContext";
 
 function App() {
   const [barLoading, setbarLoading] = useState(false);
+  const { admin } = DataState();
 
   return (
     <ChakraProvider>
@@ -21,24 +24,69 @@ function App() {
         <Topbar barLoading={barLoading} setbarLoading={setbarLoading} />
         <Navbar setbarLoading={setbarLoading} />
         <Routes>
-          <Route path="/" element={<Dashboard />}></Route>
-          <Route path="/setting" element={<Settings />}></Route>
-          <Route path="/account" element={<Account />}></Route>
+          {/* <Route
+            path="/login"
+            element={
+              admin ? <Dashboard /> : <Login setbarLoading={setbarLoading} />
+            }
+          ></Route> */}
+          <Route
+            path="/"
+            element={
+              admin ? <Dashboard /> : <Login setbarLoading={setbarLoading} />
+            }
+          ></Route>
+          <Route
+            path="/setting"
+            element={
+              admin ? <Settings /> : <Login setbarLoading={setbarLoading} />
+            }
+          ></Route>
+          <Route
+            path="/account"
+            element={
+              admin ? <Account /> : <Login setbarLoading={setbarLoading} />
+            }
+          ></Route>
           <Route
             path="/users"
-            element={<Users setbarLoading={setbarLoading} />}
+            element={
+              admin ? (
+                <Users setbarLoading={setbarLoading} />
+              ) : (
+                <Login setbarLoading={setbarLoading} />
+              )
+            }
           ></Route>
           <Route
             path="/orders"
-            element={<Orders setbarLoading={setbarLoading} />}
+            element={
+              admin ? (
+                <Orders setbarLoading={setbarLoading} />
+              ) : (
+                <Login setbarLoading={setbarLoading} />
+              )
+            }
           ></Route>
           <Route
             path="/payments"
-            element={<Payment setbarLoading={setbarLoading} />}
+            element={
+              admin ? (
+                <Payment setbarLoading={setbarLoading} />
+              ) : (
+                <Login setbarLoading={setbarLoading} />
+              )
+            }
           ></Route>
           <Route
             path="/support"
-            element={<Support setbarLoading={setbarLoading} />}
+            element={
+              admin ? (
+                <Support setbarLoading={setbarLoading} />
+              ) : (
+                <Login setbarLoading={setbarLoading} />
+              )
+            }
           ></Route>
         </Routes>
 
