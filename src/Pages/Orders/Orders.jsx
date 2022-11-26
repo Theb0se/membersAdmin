@@ -54,7 +54,6 @@ function Orders() {
   const toFixed = (charge) => {
     const n = parseFloat(charge);
     var f = n.toFixed(2);
-
     return f;
   };
 

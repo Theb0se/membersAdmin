@@ -132,7 +132,7 @@ function Payment(props) {
             <Thead>
               <Tr>
                 <Th textAlign={"center"}>Action</Th>
-                <Th>ID</Th>
+                <Th>No.</Th>
                 <Th>Name</Th>
                 <Th textAlign={"center"}>Amount</Th>
                 <Th textAlign={"center"}>Method</Th>
@@ -162,7 +162,7 @@ function Payment(props) {
                           Action
                         </div>
                       ) : (
-                        <p>{pay.status}</p>
+                        <p>{pay.status === "Approved" ? "Done" : "Not Done"}</p>
                       )}
                     </Td>
                     <Td>{payments?.length - index}</Td>

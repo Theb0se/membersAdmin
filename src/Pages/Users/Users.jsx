@@ -159,6 +159,7 @@ function Users(props) {
 
     return sum;
   };
+  console.log(Orders && Orders);
 
   return (
     <div className="users">
@@ -167,7 +168,7 @@ function Users(props) {
           <Table size="md" color={"#fff"}>
             <Thead>
               <Tr>
-                <Th>ID</Th>
+                <Th>No.</Th>
                 <Th>Name</Th>
                 <Th>Email</Th>
                 <Th>Status</Th>
